@@ -5,23 +5,32 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject _bulletPrefrab;
+    [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private Transform _gunOffset;
     [SerializeField] private float _timeBetweenShots;
 
-    private bool _fireContinously;
+    private bool _fireContinuously;
     private float _lastFireTime;
 
-    void Update()
+    private void OnEnable()
     {
-        if (_fireContinously)
+        Joystick.OnJoystickReleased += StopShooting;
+    }
+
+    private void OnDisable()
+    {
+        Joystick.OnJoystickReleased -= StopShooting;
+    }
+
+    private void Update()
+    {
+        if (_fireContinuously)
         {
             float timeSinceLastFire = Time.time - _lastFireTime;
             if (timeSinceLastFire >= _timeBetweenShots)
             {
                 FireBullet();
-
                 _lastFireTime = Time.time;
             }
         }
@@ -29,7 +38,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void FireBullet()
     {
-        GameObject bullet = Instantiate(_bulletPrefrab, _gunOffset.position, transform.rotation);
+        GameObject bullet = Instantiate(_bulletPrefab, _gunOffset.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
         rb.velocity = _bulletSpeed * transform.up;
@@ -37,6 +46,18 @@ public class PlayerShoot : MonoBehaviour
 
     private void OnFire(InputValue inputValue)
     {
-        _fireContinously = inputValue.isPressed;
+        if (inputValue.isPressed)
+        {
+            _fireContinuously = true;
+        }
+        else
+        {
+            _fireContinuously = false;
+        }
+    }
+
+    private void StopShooting()
+    {
+        _fireContinuously = false;
     }
 }

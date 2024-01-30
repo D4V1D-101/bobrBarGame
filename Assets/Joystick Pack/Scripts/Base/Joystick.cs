@@ -21,7 +21,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         set { deadZone = Mathf.Abs(value); }
     }
 
-    public AxisOptions AxisOptions { get { return AxisOptions; } set { axisOptions = value; } }
+    public AxisOptions AxisOptions { get { return axisOptions; } set { axisOptions = value; } }
     public bool SnapX { get { return snapX; } set { snapX = value; } }
     public bool SnapY { get { return snapY; } set { snapY = value; } }
 
@@ -39,6 +39,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     private Camera cam;
 
     private Vector2 input = Vector2.zero;
+
+    public delegate void JoystickReleasedAction();
+    public static event JoystickReleasedAction OnJoystickReleased;
 
     protected virtual void Start()
     {
@@ -133,6 +136,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
+
+        if (OnJoystickReleased != null)
+            OnJoystickReleased();
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)
@@ -148,3 +154,4 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 }
 
 public enum AxisOptions { Both, Horizontal, Vertical }
+
