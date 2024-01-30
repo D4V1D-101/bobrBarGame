@@ -126,10 +126,10 @@ TextureImporter:
       name: Player-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 498
-        width: 123
-        height: 105
+        x: 23
+        y: 180
+        width: 108
+        height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: Player-removebg-preview_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 502
-        width: 120
-        height: 107
+        x: 181
+        y: 181
+        width: 105
+        height: 123
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +168,10 @@ TextureImporter:
       name: Player-removebg-preview_2
       rect:
         serializedVersion: 2
-        x: 13
-        y: 340
-        width: 127
-        height: 104
+        x: 340
+        y: 177
+        width: 104
+        height: 127
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,10 +189,10 @@ TextureImporter:
       name: Player-removebg-preview_3
       rect:
         serializedVersion: 2
-        x: 172
-        y: 343
-        width: 116
-        height: 105
+        x: 498
+        y: 181
+        width: 105
+        height: 123
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,10 +210,10 @@ TextureImporter:
       name: Player-removebg-preview_4
       rect:
         serializedVersion: 2
-        x: 13
-        y: 181
-        width: 123
-        height: 105
+        x: 23
+        y: 22
+        width: 108
+        height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,10 +231,10 @@ TextureImporter:
       name: Player-removebg-preview_5
       rect:
         serializedVersion: 2
-        x: 172
-        y: 185
-        width: 119
-        height: 108
+        x: 185
+        y: 26
+        width: 108
+        height: 119
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,10 +252,10 @@ TextureImporter:
       name: Player-removebg-preview_6
       rect:
         serializedVersion: 2
-        x: 13
-        y: 23
-        width: 124
-        height: 108
+        x: 343
+        y: 29
+        width: 105
+        height: 116
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -273,10 +273,10 @@ TextureImporter:
       name: Player-removebg-preview_7
       rect:
         serializedVersion: 2
-        x: 171
-        y: 23
-        width: 124
-        height: 108
+        x: 502
+        y: 25
+        width: 107
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
