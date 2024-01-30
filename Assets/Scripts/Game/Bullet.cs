@@ -1,15 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Bullet : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    [SerializeField] private GameObject _bulletPrefrab;
+    [SerializeField] private float _bulletSpeed;
+    private bool _fireContinously;
+
+    void Update()
     {
-        if (collision.GetComponent<EnemyMove>())
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }  
+        if (_fireContinously) FireBullet();
+    }
+
+    private void FireBullet()
+    {
+        GameObject bullet = Instantiate(_bulletPrefrab, transform.position, transform.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+        rb.velocity = _bulletSpeed * transform.up;
+    }
+
+    private void OnFire(InputValue inputValue)
+    {
+        _fireContinously = inputValue.isPressed;
     }
 }
