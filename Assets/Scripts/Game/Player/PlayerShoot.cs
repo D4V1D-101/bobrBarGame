@@ -15,19 +15,19 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
-        if (_fireContinously)
-        {
-            float timeSinceLastFire = Time.time - _lastFireTime;
-            if (timeSinceLastFire >= _timeBetweenShots)
-            {
-                FireBullet();
+        //if (_fireContinously)
+        //{
+        //    float timeSinceLastFire = Time.time - _lastFireTime;
+        //    if (timeSinceLastFire >= _timeBetweenShots)
+        //    {
+        //        FireBullet();
 
-                _lastFireTime = Time.time;
-            }
-        }
+        //        _lastFireTime = Time.time;
+        //    }
+        //}
     }
 
-    private void FireBullet()
+    public void FireBullet()
     {
         GameObject bullet = Instantiate(_bulletPrefrab, _gunOffset.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
@@ -35,8 +35,8 @@ public class PlayerShoot : MonoBehaviour
         rb.velocity = _bulletSpeed * transform.up;
     }
 
-    private void OnFire(InputValue inputValue)
-    {
-        _fireContinously = inputValue.isPressed;
-    }
+    //private void OnFire(InputValue inputValue)
+    //{
+    //    _fireContinously = inputValue.isPressed;
+    //}
 }
