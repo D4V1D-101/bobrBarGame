@@ -75,4 +75,3 @@ public class PlayerShoot : MonoBehaviour
     //{
     //    _fireContinously = inputValue.isPressed;
     //}
-}
