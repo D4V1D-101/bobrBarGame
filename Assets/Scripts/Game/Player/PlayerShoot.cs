@@ -9,6 +9,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private Transform _gunOffset;
     [SerializeField] private float _timeBetweenShots;
+    [SerializeField] private AudioSource _gunSource;
 
     private bool _fireContinuously;
     private float _lastFireTime;
@@ -52,6 +53,7 @@ public class PlayerShoot : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
         rb.velocity = _bulletSpeed * transform.up;
+        _gunSource.Play();
     }
 
     private void OnFire(InputValue inputValue)

@@ -35,16 +35,16 @@ public class PlayerMovement : MonoBehaviour
             float vAxis = move.y;
             float zAxis = Mathf.Atan2(hAxis, vAxis) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, -zAxis);
-
-            if (move.x != 0 || move.y != 0)
-            {
-                walkingSound.enabled = true;
-            }
-            else
-            {
-                walkingSound.enabled = false;
-            }
         }
+
+           if (move.x != 0 || move.y != 0)
+           {
+                walkingSound.enabled = true;
+           }
+           else
+           {
+                walkingSound.enabled = false;
+           }
     }
 
     private void FixedUpdate()
