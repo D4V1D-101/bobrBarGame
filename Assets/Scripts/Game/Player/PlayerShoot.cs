@@ -34,9 +34,19 @@ public class PlayerShoot : MonoBehaviour
                 _lastFireTime = Time.time;
             }
         }
+        //if (_fireContinously)
+        //{
+        //    float timeSinceLastFire = Time.time - _lastFireTime;
+        //    if (timeSinceLastFire >= _timeBetweenShots)
+        //    {
+        //        FireBullet();
+
+        //        _lastFireTime = Time.time;
+        //    }
+        //}
     }
 
-    private void FireBullet()
+    public void FireBullet()
     {
         GameObject bullet = Instantiate(_bulletPrefab, _gunOffset.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
@@ -60,4 +70,9 @@ public class PlayerShoot : MonoBehaviour
     {
         _fireContinuously = false;
     }
+}
+    //private void OnFire(InputValue inputValue)
+    //{
+    //    _fireContinously = inputValue.isPressed;
+    //}
 }
