@@ -4,51 +4,54 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private AudioSource walkingSound;
-
     public FixedJoystick joystick;
     Rigidbody2D rb;
     Vector2 move;
     public float moveSpeed;
+    private Animator animatior;
+    private bool isJoystickBeingUsed = false;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animatior = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        HandleMovementInput();
-    }
-
-    private void HandleMovementInput()
-    {
-        move.x = joystick.Horizontal;
-        move.y = joystick.Vertical;
-
-        if (move != Vector2.zero)
+        if (isJoystickBeingUsed)
         {
-            float angle = Mathf.Atan2(move.y, move.x) * Mathf.Rad2Deg;
-            rb.rotation = angle;
+            move.x = joystick.Horizontal;
+            move.y = joystick.Vertical;
 
             float hAxis = move.x;
             float vAxis = move.y;
             float zAxis = Mathf.Atan2(hAxis, vAxis) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, -zAxis);
 
-            if (move.x != 0 || move.y != 0)
-            {
-                walkingSound.enabled = true;
-            }
-            else
-            {
-                walkingSound.enabled = false;
-            }
         }
     }
 
+    private void SetAnimation()
+    {
+        bool isMoving = move != Vector2.zero;
+        animatior.SetBool("isMoving",isMoving);
+    
+    }
+
+
+
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
+        if (isJoystickBeingUsed)
+        {
+            rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
+        }
+        SetAnimation();
+    }
+
+    public void SetIsJoystickBeingUsed(bool value)
+    {
+        isJoystickBeingUsed = value;
     }
 }

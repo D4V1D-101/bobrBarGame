@@ -7,9 +7,10 @@ public class Bullet : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.GetComponent<EnemyMove>())
         {
-            Destroy(collision.gameObject);
+            HealthController healthController = collision.GetComponent<HealthController>();
+            healthController.takeDamage(10);
             Destroy(gameObject);
         }
     }

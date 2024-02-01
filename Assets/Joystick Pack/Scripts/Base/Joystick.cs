@@ -43,6 +43,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public delegate void JoystickReleasedAction();
     public static event JoystickReleasedAction OnJoystickReleased;
 
+    private PlayerMovement playerMovement;
+
     protected virtual void Start()
     {
         HandleRange = handleRange;
@@ -58,11 +60,16 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchorMax = center;
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
+
+        playerMovement = FindObjectOfType<PlayerMovement>();
+        if (playerMovement == null)
+            Debug.LogError("PlayerMovement script not found in the scene.");
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
+        playerMovement.SetIsJoystickBeingUsed(true);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -139,6 +146,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
         if (OnJoystickReleased != null)
             OnJoystickReleased();
+
+        playerMovement.SetIsJoystickBeingUsed(false);
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)
@@ -154,4 +163,3 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 }
 
 public enum AxisOptions { Both, Horizontal, Vertical }
-

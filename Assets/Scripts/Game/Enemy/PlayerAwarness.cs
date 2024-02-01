@@ -8,7 +8,7 @@ public class PlayerAwarness : MonoBehaviour
 
     public Vector2 DirectionToPlayer { get; private set; }
 
-    [SerializeField]private float playerAwarnessDistance;
+    [SerializeField] private float playerAwarnessDistance;
     [SerializeField] private AudioSource awarnessSound;
 
     private Transform _player;
